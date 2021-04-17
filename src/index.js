@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
+import Admin from './admin'
 import reportWebVitals from './reportWebVitals';
-import Life from './pages/demo/Life.js';
+// import Life from './pages/demo/Life.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Life />
+    <Admin />
   </React.StrictMode>,
   document.getElementById('root')
 );
