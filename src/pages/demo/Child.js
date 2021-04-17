@@ -19,7 +19,7 @@ export default class Child extends React.Component{
 
     componentWillReceiveProps (newPorps) {
         console.log(newPorps);
-        console.log('will props' + newPorps.count);
+        console.log('will receive props' + newPorps.count);
     }
 
     shouldComponentUpdate () {
@@ -39,7 +39,7 @@ export default class Child extends React.Component{
         return (
             <div>
                 <p>这里是子组件</p>
-                <p>子组件中的count值：{this.state.count}</p>
+                <p>子组件中的count值：{this.props.count}</p>
             </div>
         )
     }

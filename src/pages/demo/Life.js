@@ -1,6 +1,5 @@
 import React from 'react';
 import Child from './Child.js';
-import { Button } from 'antd';
 import './index.less';
 
 export default class Life extends React.Component {
@@ -10,6 +9,32 @@ export default class Life extends React.Component {
         this.state = {
             count: 0
         }
+    }
+
+    componentWillMount () {
+        console.log('父组件 - will mount');
+    }
+
+    componentDidMount () {
+        console.log('父组件 - did mount');
+    }
+
+    componentWillReceiveProps (newPorps) {
+        console.log(newPorps);
+        console.log('父组件 - will receive props' + newPorps.count);
+    }
+
+    shouldComponentUpdate () {
+        console.log('父组件 - should update');
+        return true;
+    }
+
+    componentWillUpdate () {
+        console.log('父组件 - will update');
+    }
+
+    componentDidUpdate () {
+        console.log('父组件 - did update');
     }
 
     handleClick () {
@@ -28,7 +53,6 @@ export default class Life extends React.Component {
         return (
             <div className="content">
                 <p>React 生命周期介绍</p>
-                <Button onClick={this.handleClick.bind(this)}>antd 点击一下</Button>
                 <button onClick={this.handleClick.bind(this)}>点击一下</button>
                 <button onClick={this.handleAdd.bind(this)}>点击一下</button>
                 <p>父组件中的count值： {this.state.count}</p>
