@@ -144,7 +144,7 @@ module.exports = function (webpackEnv) {
           options: {
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
             root: paths.appSrc,
-          },
+          }, 
         },
         {
           loader: require.resolve(preProcessor),
@@ -419,6 +419,7 @@ module.exports = function (webpackEnv) {
                       },
                     },
                   ],
+                  ["import", { "libraryName": "antd", style: true}],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
