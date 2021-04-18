@@ -3,7 +3,8 @@ import { Row, Col } from 'antd';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
-import './style/common.less'
+import './style/common.less';
+import Home from '../src/pages/home';
 
 export default class Admin extends Component {
     render () {
@@ -14,7 +15,9 @@ export default class Admin extends Component {
                 </Col>
                 <Col span="20" className="main">
                     <Header />
-                    <Row className="content">中间区域</Row>
+                    <Row className="content">
+                        <Home />
+                    </Row>
                     <Footer />
                 </Col>
             </Row>
