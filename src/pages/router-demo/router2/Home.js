@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Link } from 'react-router-dom';
 
-
 export default class Home extends Component {
     render() {
         return (
@@ -9,7 +8,7 @@ export default class Home extends Component {
                 <div>
                     <ul>
                         <li>
-                            <Link to="/">Main1</Link>
+                            <Link to="/main">Main1</Link>
                         </li>
                         <li>
                             <Link to="/abount">Abount1</Link>
