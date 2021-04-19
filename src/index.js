@@ -5,12 +5,12 @@ import './index.css';
 import Admin from './admin'
 import reportWebVitals from './reportWebVitals';
 // import Life from './pages/demo/Life.js';
-import Home from '../src/pages/router-demo/router1/Home.js'
+import Router from '../src/pages/router-demo/router2/router'
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Admin /> */}
-    <Home />
+    <Router />
   </React.StrictMode>,
   document.getElementById('root')
 );
