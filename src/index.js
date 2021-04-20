@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Admin from './admin'
+// import Admin from './admin'
 import reportWebVitals from './reportWebVitals';
 // import Life from './pages/demo/Life.js';
-import Router from '../src/pages/router-demo/router3/router'
+import Router from './router';
+// import Router from '../src/pages/router-demo/router3/router'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Admin /> */}
     <Router />
   </React.StrictMode>,
   document.getElementById('root')
