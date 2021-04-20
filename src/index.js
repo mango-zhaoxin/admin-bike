@@ -5,7 +5,7 @@ import './index.css';
 import Admin from './admin'
 import reportWebVitals from './reportWebVitals';
 // import Life from './pages/demo/Life.js';
-import Router from '../src/pages/router-demo/router2/router'
+import Router from '../src/pages/router-demo/router3/router'
 
 ReactDOM.render(
   <React.StrictMode>
