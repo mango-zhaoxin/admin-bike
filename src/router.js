@@ -8,6 +8,7 @@ import Loadings from './pages/ui/loadings';
 import Modals from './pages/ui/modals';
 import Notice from './pages/ui/notice';
 import Messages from './pages/ui/message';
+import Tab from './pages/ui/tabs';
 import NoMatch from './pages/noMatch';
 
 export default class IRouter extends React.Component {
@@ -25,6 +26,7 @@ export default class IRouter extends React.Component {
                                     <Route path="/admin/ui/loadings" component={Loadings} />
                                     <Route path="/admin/ui/notification" component={Notice} />
                                     <Route path="/admin/ui/messages" component={Messages} />
+                                    <Route path="/admin/ui/tabs" component={Tab} />
                                     <Route component={NoMatch} />
                                 </Switch>
                             </Admin>
