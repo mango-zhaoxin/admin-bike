@@ -57,37 +57,37 @@ const menuList = [
     },
     {
         title: '表格',
-        key: '/table',
+        key: '/admin/table',
         children: [
             {
                 title: '基础表格',
-                key: '/table/basic',
+                key: '/admin/table/basic',
             },
             {
                 title: '高级表格',
-                key: '/table/high',
+                key: '/admin/table/high',
             }
         ]
     },
     {
         title: '富文本',
-        key: '/rich'
+        key: '/admin/rich'
     },
     {
         title: '城市管理',
-        key: '/city'
+        key: '/admin/city'
     },
     {
         title: '订单管理',
-        key: '/order',
+        key: '/admin/order',
         btnList: [
             {
                 title: '订单详情',
-                key: 'detail'
+                key: '/admin/detail'
             },
             {
                 title: '结束订单',
-                key: 'finish'
+                key: '/admin/finish'
             }
         ]
     },
