@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Table } from 'antd';
+import axios from '../../axios';
+// import axios from "axios";
 
 export default class basicTable extends Component {
     state = {}
@@ -37,11 +39,46 @@ export default class basicTable extends Component {
             }
         ]
 
-        this.setState({
-            dataSource: data
-        })
+        const dataSource2 = []
 
+        this.setState({
+            dataSource: data,
+            dataSource2: dataSource2
+        });
+
+        this.request();
     }
+
+    // 动态获取mock数据
+    request  = () => {
+        // 方式一：直接使用axios进行请求
+        // const baseUrl = 'https://www.fastmock.site/mock/f5ebc7863fe48c5ac46e232eaa9700bb/mockapi'
+        // axios.get(baseUrl + '/table/list').then((res) => {
+        //     console.log(JSON.stringify(res))
+        //     if(res.status === 200 && res.data.code === 0) {
+        //         this.setState({
+        //             dataSource2: res.data.result
+        //         })
+        //     }
+        // })
+
+        // 方式二：使用封装的axios进行请求
+        axios.ajax({
+            url: '/table/list',
+            data:{
+                params:{
+                    page: 1
+                }
+            }
+        }).then((res) => {
+            if (res.code == 0) {
+                this.setState({
+                    dataSource2: res.result
+                })
+            }
+        })
+    }
+
     render() {
         const columns = [
             {
@@ -85,6 +122,14 @@ export default class basicTable extends Component {
                         pagination={false}
                         columns={columns}
                         dataSource={this.state.dataSource}
+                    />
+                </Card>
+                 <Card title="动态数据渲染表格" style={{margin: '10px 0'}}>
+                    <Table
+                        bordered
+                        pagination={false}
+                        columns={columns}
+                        dataSource={this.state.dataSource2}
                     />
                 </Card>
             </div>
