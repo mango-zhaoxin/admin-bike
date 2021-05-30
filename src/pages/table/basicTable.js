@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Table } from 'antd';
+import { Card, Modal, Table } from 'antd';
 import axios from '../../axios';
 // import axios from "axios";
 
@@ -39,6 +39,10 @@ export default class basicTable extends Component {
             }
         ]
 
+        data.map((item, index) => {
+            item.key = index;
+        })
+
         const dataSource2 = []
 
         this.setState({
@@ -73,10 +77,25 @@ export default class basicTable extends Component {
             }
         }).then((res) => {
             if (res.code == 0) {
+                res.result.map((item, index) => {
+                    item.key = index
+                })
                 this.setState({
                     dataSource2: res.result
                 })
             }
+        })
+    }
+
+    onRowClick = (record, index) => {
+        let selectKey = [index];
+        Modal.info({
+            title: "信息",
+            content: `用户名：${record.username}, 爱好：${record.interest}`
+        })
+        this.setState({
+            selectedRowKeys: selectKey,
+            selectedItem: record
         })
     }
 
@@ -141,6 +160,13 @@ export default class basicTable extends Component {
                 dataIndex: 'time',
             }
         ]
+
+        const { selectedRowKeys } = this.state;
+        const rowSelection = {
+            type: "radio",
+            selectedRowKeys
+        }
+
         return (
             <div>
                 <Card title="基础表格">
@@ -154,6 +180,22 @@ export default class basicTable extends Component {
                  <Card title="动态数据渲染表格" style={{margin: '10px 0'}}>
                     <Table
                         bordered
+                        pagination={false}
+                        columns={columns}
+                        dataSource={this.state.dataSource2}
+                    />
+                </Card>
+                <Card title="mock-单选" style={{margin: '10px 0'}}>
+                    <Table
+                        bordered
+                        rowSelection={rowSelection}
+                        onRow={(record, index) => {
+                            return {
+                                onClick: () => {
+                                    this.onRowClick(record, index);
+                                }
+                            }
+                        }}
                         pagination={false}
                         columns={columns}
                         dataSource={this.state.dataSource2}
