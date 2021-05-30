@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Modal, Table } from 'antd';
+import { Card, message, Modal, Table, Button } from 'antd';
 import axios from '../../axios';
 // import axios from "axios";
 
@@ -94,10 +94,34 @@ export default class basicTable extends Component {
             content: `用户名：${record.username}, 爱好：${record.interest}`
         })
         this.setState({
-            selectedRowKeys: selectKey,
+            selectedRadioRowKeys: selectKey,
             selectedItem: record
         })
     }
+
+    // 多选执行删除动作
+    handleDelete = (() => {
+        let rows = this.state.selectedRows; // 获取多选所有选中行的数组数据
+        let ids = [];
+        rows.map((item) => {
+            ids.push(item.id);
+        })
+        Modal.confirm({
+            title: '删除提示',
+            okText: '确定',
+            cancelText: '取消',
+            content: `您确定要删除这些数据吗？${ids.join(',')}`,
+            onOk: () => {
+                console.log('删除成功删除成功删除成功');
+                message.success('删除成功');
+                this.request();
+                this.setState({  // 删除之后，置空选中的数据数组，选中数据的索引数组
+                    selectedCheckRowKeys: [],
+                    selectedRows: null
+                })
+            }
+        })
+    })
 
     render() {
         const columns = [
@@ -161,10 +185,21 @@ export default class basicTable extends Component {
             }
         ]
 
-        const { selectedRowKeys } = this.state;
-        const rowSelection = {
-            type: "radio",
-            selectedRowKeys
+        const { selectedRadioRowKeys, selectedCheckRowKeys } = this.state;
+        const rowRadioSelection = {
+            type: "radio",  
+            selectedRowKeys: selectedRadioRowKeys, // 单选 - 选中数组数组
+        }
+
+        const rowCheckSelection = {
+            type: "checkbox",
+            selectedRowKeys: selectedCheckRowKeys,
+            onChange: (selectedRowKeys, selectedRows) => {
+                this.setState({
+                    selectedCheckRowKeys: selectedRowKeys, // 多选 - 选中数据的
+                    selectedRows    // 多选 - 选中数据的索引数组
+                })
+            }
         }
 
         return (
@@ -188,7 +223,7 @@ export default class basicTable extends Component {
                 <Card title="mock-单选" style={{margin: '10px 0'}}>
                     <Table
                         bordered
-                        rowSelection={rowSelection}
+                        rowSelection={rowRadioSelection}
                         onRow={(record, index) => {
                             return {
                                 onClick: () => {
@@ -196,6 +231,18 @@ export default class basicTable extends Component {
                                 }
                             }
                         }}
+                        pagination={false}
+                        columns={columns}
+                        dataSource={this.state.dataSource2}
+                    />
+                </Card>
+                <Card title="mock-多选" style={{margin: '10px 0'}}>
+                    <div style={{marginBottom: 10}}>
+                        <Button onClick={this.handleDelete}>删除</Button>
+                    </div>
+                    <Table
+                        bordered
+                        rowSelection={rowCheckSelection}
                         pagination={false}
                         columns={columns}
                         dataSource={this.state.dataSource2}
