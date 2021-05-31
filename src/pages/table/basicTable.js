@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Card, message, Modal, Table, Button } from 'antd';
 import axios from '../../axios';
+import Utils from './../../utils/utils';
 // import axios from "axios";
 
 export default class basicTable extends Component {
     state = {}
+
+    params =  {
+        page: 1
+    }
+
     componentDidMount() {
         const data = [
             {
@@ -67,21 +73,28 @@ export default class basicTable extends Component {
         // })
 
         // 方式二：使用封装的axios进行请求
+        let _this = this;
         axios.ajax({
             url: '/table/list',
             data:{
                 params:{
-                    page: 1
+                    page: this.params.page
                 },
                 isShowLoading: true,
             }
         }).then((res) => {
             if (res.code == 0) {
-                res.result.map((item, index) => {
+                res.result.list.map((item, index) => {
                     item.key = index
                 })
                 this.setState({
-                    dataSource2: res.result
+                    dataSource2: res.result.list,
+                    selectedRowKeys: [],
+                    selectedRows: null,
+                    pagination: Utils.pagination(res,(current)=>{
+                        _this.params.page = current;
+                        this.request();
+                    })
                 })
             }
         })
@@ -246,6 +259,17 @@ export default class basicTable extends Component {
                         pagination={false}
                         columns={columns}
                         dataSource={this.state.dataSource2}
+                    />
+                </Card>
+                <Card title="mock-表格数据分页" style={{margin: '10px 0'}}>
+                    <div style={{marginBottom: 10}}>
+                        <Button onClick={this.handleDelete}>删除</Button>
+                    </div>
+                    <Table
+                        bordered
+                        columns={columns}
+                        dataSource={this.state.dataSource2}
+                        pagination={this.state.pagination}
                     />
                 </Card>
             </div>
