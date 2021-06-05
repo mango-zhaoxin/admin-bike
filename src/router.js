@@ -18,6 +18,7 @@ import hightTable from './pages/table/heightTable';
 import City from './pages/city';
 import Order from './pages/order';
 import NoMatch from './pages/noMatch';
+import Common from './common';
 
 export default class IRouter extends React.Component {
     render() {
@@ -48,7 +49,13 @@ export default class IRouter extends React.Component {
                             </Admin>
                         }>
                     </Route>
-                    <Route path="/order/detail" component={Login} />
+                    <Route path="/common" 
+                        render={() => 
+                            <Common>
+                                <Route path="/common/order/detail:orderId" component={Login} />
+                            </Common>
+                        }
+                    />
                 </App>
             </HashRouter>
         );
