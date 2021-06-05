@@ -83,7 +83,7 @@ export default class basicTable extends Component {
                 isShowLoading: true,
             }
         }).then((res) => {
-            if (res.code == 0) {
+            if (res.code === 0) {
                 res.result.list.map((item, index) => {
                     item.key = index
                 })

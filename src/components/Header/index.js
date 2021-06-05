@@ -22,7 +22,7 @@ export default class Header extends Component {
     }
 
     getWeatherAPIData() {
-        let city = "北京"
+        // let city = "北京"
         axios.jsonp({
             // url: 'http://api.map.baidu.com/weather/v1/?location=116.40387,39.91489&data_type=all&ak=84qwIG9nwmFZGFMnmF0c6vy2ccor81rQ'
             // url: 'http://api.map.baidu.com/reverse_geocoding/v3/?ak=ccmBPiAa8OZVSsB3yGfQDS0UMdMLmQ2H&output=json&coordtype=wgs84ll&location=31.225696563611,121.49884033194'

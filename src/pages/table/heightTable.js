@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Card, message, Modal, Table, Button, Divider, Badge } from 'antd';
+import { Card, message, Modal, Table, Button, Badge } from 'antd';
 import axios from '../../axios';
-import Utils from './../../utils/utils';
-
 export default class heightTable extends Component {
     state = {};
 
@@ -15,7 +13,6 @@ export default class heightTable extends Component {
     }
 
     request () {
-        let _this = this;
         axios.ajax({
             url: '/table/high/list',
             data:{
@@ -25,7 +22,7 @@ export default class heightTable extends Component {
                 isShowLoading: true,
             }
         }).then((res) => {
-            if (res.code == 0) {
+            if (res.code === 0) {
                 res.result.list.map((item, index) => {
                     item.key = index
                 })
@@ -48,7 +45,7 @@ export default class heightTable extends Component {
         const id = item.id;
         Modal.info({
             title: '删除',
-            content: '您确定要删除此条数据吗?',
+            content: `您确定要删除id为${id}的数据吗?`,
             onOk: () => {
                 message.success('删除成功');
                 this.request();
@@ -406,14 +403,12 @@ export default class heightTable extends Component {
                         pagination={false}
                         columns={columns}
                         dataSource={this.state.dataSource}
-                        pagination={false}
                         scroll={{y:400}}
                     />
                 </Card>
                 <Card title="左侧固定" style={{margin: '10px 0'}}>
                     <Table
                         bordered
-                        pagination={false}
                         columns={columns2}
                         dataSource={this.state.dataSource}
                         pagination={false}
@@ -423,7 +418,6 @@ export default class heightTable extends Component {
                 <Card title="年龄排序" style={{margin: '10px 0'}}>
                     <Table
                         bordered
-                        pagination={false}
                         columns={columns3}
                         dataSource={this.state.dataSource}
                         pagination={false}
@@ -433,7 +427,6 @@ export default class heightTable extends Component {
                 <Card title="操作按钮" style={{margin: '10px 0'}}>
                     <Table
                         bordered
-                        pagination={false}
                         columns={columns4}
                         dataSource={this.state.dataSource}
                         pagination={false}
