@@ -1,6 +1,18 @@
 @import './default.less';
 @import './loading.less';
 
+ul,li {
+    list-style: none;
+}
+.clearfix {
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+        visibility: hidden;
+    }
+}
+
 .container {
     display: flex;
     .nav-left {

@@ -19,7 +19,7 @@ import City from './pages/city';
 import Order from './pages/order';
 import NoMatch from './pages/noMatch';
 import Common from './common';
-
+import OrderDetail from './pages/order/detail'
 export default class IRouter extends React.Component {
     render() {
         return (
@@ -52,7 +52,7 @@ export default class IRouter extends React.Component {
                     <Route path="/common" 
                         render={() => 
                             <Common>
-                                <Route path="/common/order/detail:orderId" component={Login} />
+                                <Route path="/common/order/detail/:orderId" component={OrderDetail} />
                             </Common>
                         }
                     />
