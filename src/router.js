@@ -13,6 +13,7 @@ import Gallerys from './pages/ui/gallery';
 import Carousels from './pages/ui/carousel';
 import LoginForm from './pages/form/login';
 import FormRegister from './pages/form/register';
+import ChinaProviceCity from './pages/form/chinaprovincecity';
 import tableForm from './pages/table/basicTable';
 import hightTable from './pages/table/heightTable';
 import City from './pages/city';
@@ -40,6 +41,7 @@ export default class IRouter extends React.Component {
                                     <Route path="/admin/ui/carousel" component={Carousels} />
                                     <Route path="/admin/form/login" component={LoginForm} />
                                     <Route path="/admin/form/reg" component={FormRegister} />
+                                    <Route path="/admin/form/provinceCityCounty" component={ChinaProviceCity} />
                                     <Route path="/admin/table/basic" component={tableForm} />
                                     <Route path="/admin/table/high" component={hightTable} />
                                     <Route path="/admin/city" component={City} />
@@ -49,8 +51,8 @@ export default class IRouter extends React.Component {
                             </Admin>
                         }>
                     </Route>
-                    <Route path="/common" 
-                        render={() => 
+                    <Route path="/common"
+                        render={() =>
                             <Common>
                                 <Route path="/common/order/detail/:orderId" component={OrderDetail} />
                             </Common>

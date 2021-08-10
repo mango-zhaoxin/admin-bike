@@ -52,6 +52,10 @@ const menuList = [
             {
                 title: '注册',
                 key: '/admin/form/reg',
+            },
+            {
+                title: '省市区',
+                key: '/admin/form/provinceCityCounty',
             }
         ]
     },

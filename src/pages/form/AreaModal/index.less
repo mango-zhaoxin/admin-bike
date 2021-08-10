@@ -1,0 +1,178 @@
+.proviceContent {
+    display: flex;
+}
+.quInfo {
+    margin-bottom: 16px;
+    :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.content_wrap {
+    :global {
+        .area_wrap {
+            height: 242px;
+            border-radius: 6px;
+            border: 1px solid rgba(229, 229, 229, 1);
+            display: flex;
+            justify-content: space-between;
+
+            .area_zero {
+                background: rgba(240, 242, 244, 1);
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 33%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+                .p_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+                .p_item_active {
+                    .p_item;
+                    background:rgba(245,247,249,1);
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+            
+            .area_first {
+                background: rgba(240, 242, 244, 1);
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 33%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+                .p_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+                .p_item_active {
+                    .p_item;
+                    background:rgba(245,247,249,1);
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+
+            .area_second {
+                background: rgba(245, 247, 249, 1);
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 33%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+
+                .c_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+                .c_item_active {
+                    .c_item;
+                    background:rgba(255,255,255,1);
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+
+            .area_third {
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 33%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+                .c_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+            .title {
+                color: #222222;
+            }
+            .title_active {
+                color: #1AB495;
+            }
+            .area_num {
+                color: #666666;
+                margin-left: 5px;
+            }
+            .area_num_active {
+                color: #1AB495;
+                margin-left: 5px;
+                
+            }
+
+            .cate_first {
+                background: rgba(245, 247, 249, 1);
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 50%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+
+                .c_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+                .c_item_active {
+                    .c_item;
+                    background:rgba(255,255,255,1);
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+
+            .cate_second {
+                padding: 10px 0px 10px 10px;
+                flex: 1 1 50%;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none
+                }
+                .c_item {
+                    height: 23px;
+                    line-height: 23px;
+                    border-radius:4px 0px 0px 4px;
+                    cursor: pointer;
+                }
+
+                .name_normal {
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+}

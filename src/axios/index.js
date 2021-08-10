@@ -2,7 +2,7 @@ import JsonP from 'jsonp';
 import axios from 'axios';
 import { Modal } from 'antd';
 export default class Axios {
-    static jsonp (options) {
+    static jsonp(options) {
         return new Promise((resolve, reject) => {
             JsonP(options.url, {
                 param: 'callback'
@@ -16,7 +16,7 @@ export default class Axios {
         })
     }
 
-    static ajax (options) {
+    static ajax(options) {
         let loading;
         if (options.data && options.data.isShowLoading !== false) {
             loading = document.getElementById('ajaxLoading');
