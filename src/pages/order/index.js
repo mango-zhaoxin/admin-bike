@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 export default class Order extends React.Component {
-    
+
     state = {
         orderInfo: {},
         orderConfimVisible: false
@@ -19,12 +19,12 @@ export default class Order extends React.Component {
 
     formList = [
         {
-            type:'SELECT',
-            label:'城市',
-            field:'city',
-            placeholder:'全部',
-            initialValue:'1',
-            width:80,
+            type: 'SELECT',
+            label: '城市',
+            field: 'city',
+            placeholder: '全部',
+            initialValue: '1',
+            width: 80,
             list: [{ id: '0', name: '全部' }, { id: '1', name: '北京' }, { id: '2', name: '天津' }, { id: '3', name: '上海' }]
         },
         {
@@ -33,7 +33,7 @@ export default class Order extends React.Component {
         {
             type: 'SELECT',
             label: '订单状态',
-            field:'order_status',
+            field: 'order_status',
             placeholder: '全部',
             initialValue: '1',
             width: 80,
@@ -41,16 +41,16 @@ export default class Order extends React.Component {
         }
     ]
 
-    componentDidMount () {
+    componentDidMount() {
         this.requestList();
     }
 
-    handleFilter = (params)=>{
+    handleFilter = (params) => {
         this.params = params;
         this.requestList();
     }
 
-    requestList () {
+    requestList() {
         let _this = this;
         axios.ajax({
             url: '/order/list',
@@ -74,7 +74,7 @@ export default class Order extends React.Component {
     }
 
     // 订单结束确认
-    handleConfirm = ()=>{
+    handleConfirm = () => {
         let item = this.state.selectedItem;
         if (!item) {
             Modal.info({
@@ -84,16 +84,16 @@ export default class Order extends React.Component {
             return;
         }
         axios.ajax({
-            url:'/order/ebike_info',
-            data:{
-                params:{
+            url: '/order/ebike_info',
+            data: {
+                params: {
                     orderId: item.id
                 }
             }
-        }).then((res)=>{
-            if(res.code === 0 ){
+        }).then((res) => {
+            if (res.code === 0) {
                 this.setState({
-                    orderInfo:res.result,
+                    orderInfo: res.result,
                     orderConfirmVisble: true
                 })
             }
@@ -101,7 +101,7 @@ export default class Order extends React.Component {
     }
 
     // 结束订单
-    handleFinishOrder = ()=>{
+    handleFinishOrder = () => {
         let item = this.state.selectedItem;
         axios.ajax({
             url: '/order/finish_order',
@@ -138,10 +138,10 @@ export default class Order extends React.Component {
             })
             return;
         }
-        window.open(`/#/common/order/detail/${item.id}`,'_blank')
+        window.open(`/#/common/order/detail/${item.id}`, '_blank')
     }
 
-    render () {
+    render() {
         const columns = [
             {
                 title: "订单编号",
@@ -162,8 +162,8 @@ export default class Order extends React.Component {
             {
                 title: "里程",
                 dataIndex: "distance",
-                render(distance){
-                    return distance/1000 + 'Km';
+                render(distance) {
+                    return distance / 1000 + 'Km';
                 }
             },
             {
@@ -193,8 +193,8 @@ export default class Order extends React.Component {
         ]
 
         const formItemLayout = {
-            labelCol:{span:5},
-            wrapperCol:{span:19}
+            labelCol: { span: 5 },
+            wrapperCol: { span: 19 }
         }
 
         const selectedRowKeys = this.state.selectedRowKeys;
@@ -210,10 +210,10 @@ export default class Order extends React.Component {
                 </Card>
                 <Card style={{ marginTop: 10 }}>
                     <Button type="primary" onClick={this.openOrderDetail}>订单详情</Button>
-                    <Button type="primary" style={{marginLeft: 10}} onClick={this.handleConfirm}>结束订单</Button>
+                    <Button type="primary" style={{ marginLeft: 10 }} onClick={this.handleConfirm}>结束订单</Button>
                 </Card>
                 <div className="content-wrap">
-                    <Table 
+                    <Table
                         bordered
                         columns={columns}
                         dataSource={this.state.list}
@@ -231,9 +231,9 @@ export default class Order extends React.Component {
                 <Modal
                     title="结束订单"
                     visible={this.state.orderConfirmVisble}
-                    onCancel={()=>{
+                    onCancel={() => {
                         this.setState({
-                            orderConfirmVisble:false
+                            orderConfirmVisble: false
                         })
                     }}
                     onOk={this.handleFinishOrder}
@@ -276,12 +276,12 @@ class FilterForm extends React.Component {
                 </FormItem>
                 <FormItem label="订单时间">
                     {getFieldDecorator('start_time')(
-                        <DatePicker showTime format="YY-MM-DD HH:mm:ss"/>
+                        <DatePicker showTime format="YY-MM-DD HH:mm:ss" />
                     )}
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('end_time')(
-                        <DatePicker showTime format="YY-MM-DD HH:mm:ss"/>
+                        <DatePicker showTime format="YY-MM-DD HH:mm:ss" />
                     )}
                 </FormItem>
                 <FormItem label="订单状态">
@@ -292,6 +292,10 @@ class FilterForm extends React.Component {
                             <Option value="2">已结束</Option>
                         </Select>
                     )}
+                </FormItem>
+                < FormItem>
+                    <Button type="primary" style={{ margin: "0 20px" }}>查询</Button>
+                    <Button>重置</Button>
                 </FormItem>
             </Form>
         )

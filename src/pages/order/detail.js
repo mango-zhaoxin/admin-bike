@@ -1,19 +1,19 @@
 import React from 'react';
-import { Card} from 'antd';
+import { Card } from 'antd';
 import axios from '../../axios/index';
 import './detail.less'
 
-export default class OrderDetail extends React.Component { 
+export default class OrderDetail extends React.Component {
     state = {}
 
-    componentDidMount () {
+    componentDidMount() {
         let orderId = this.props.match.params.orderId;
         if (orderId) {
             this.getDetailInfo(orderId);
         }
     }
 
-    getDetailInfo  = (orderId) => {
+    getDetailInfo = (orderId) => {
         axios.ajax({
             url: '/order/detail',
             data: {
@@ -26,16 +26,34 @@ export default class OrderDetail extends React.Component {
                 this.setState({
                     detailInfo: res.result
                 })
+                this.renderMap()
             }
         })
     }
 
-    render () {
+    renderMap = () => {
+        // this.map = new window.BMap.Map('orderDetailMap');
+        this.map = new window.BMapGL.Map("orderDetailMap");
+        // this.map.centerAndZoom('北京', 11);
+        // 添加地图控件
+        this.addMapControl();
+
+
+    }
+
+    // 添加地图控件
+    addMapControl = () => {
+        let map = this.map;
+        map.addControl(new window.BMapGL.ScaleControl({ anchor: window.BMAP_ANCHOR_TOP_RIGHT }));
+        map.addControl(new window.BMapGL.ZoomControl({ anchor: window.BMAP_ANCHOR_TOP_RIGHT }));
+    }
+
+    render() {
         const info = this.state.detailInfo || {};
         return (
             <div>
                 <Card>
-                    <div id="orderDetailMap"></div>
+                    <div id="orderDetailMap" className="order-map"></div>
                     <div className="detail-items">
                         <div className="item-title">基础信息</div>
                         <ul className="detail-form">
@@ -75,7 +93,7 @@ export default class OrderDetail extends React.Component {
                             </li>
                             <li>
                                 <div className="detail-form-left">行驶里程</div>
-                                <div className="detail-form-content">{info.distance/1000}公里</div>
+                                <div className="detail-form-content">{info.distance / 1000}公里</div>
                             </li>
                         </ul>
                     </div>
